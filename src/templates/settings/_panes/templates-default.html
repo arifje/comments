@@ -111,12 +111,13 @@
         <div class="instructions"><p>{{ 'Copy the current `resources/dist` files to the path above — run this after each plugin update. Equivalent to `php craft comments/base/publish-assets`. (Save your settings first.)' | t('comments') }}</p></div>
     </div>
     <div class="input">
-        <button type="button" class="btn" id="comments-publish-assets">{{ 'Publish now' | t('comments') }}</button>
+        {# select by class, not id: the settings page wraps panes in {% namespace %}, which rewrites ids #}
+        <button type="button" class="btn js-comments-publish-assets">{{ 'Publish now' | t('comments') }}</button>
     </div>
 </div>
 
 {% js %}
-    document.getElementById('comments-publish-assets')?.addEventListener('click', (e) => {
+    document.querySelector('.js-comments-publish-assets')?.addEventListener('click', (e) => {
         const $btn = e.currentTarget;
         $btn.classList.add('disabled');
         $btn.setAttribute('disabled', 'disabled');
